@@ -53,7 +53,7 @@ main()
 			printf("\n\t\t\t----------------------------------");
 			printf("\n\t\t\t       Change Breakdown:");
 			printf("\n\t\t\t----------------------------------");
-			printf("\n\t\t\t%d pc\(s) 500PHP \n\t\t\t%d pc\(s) 100PHP \n\t\t\t%d pc\(s) 50PHP \n\t\t\t%d pc\(s) 10PHP \n\t\t\t%d pc\(s) 5PHP \n\t\t\t%d pc\(s) 1PHP",e,f,g,h,i,j); //onelineyolo
+			printf("\n\t\t\t%d pc(s) 500PHP \n\t\t\t%d pc(s) 100PHP \n\t\t\t%d pc(s) 50PHP \n\t\t\t%d pc(s) 10PHP \n\t\t\t%d pc(s) 5PHP \n\t\t\t%d pc(s) 1PHP",e,f,g,h,i,j); //onelineyolo
 			break;
 		case 2:
 			printf("\t\t\t----------------------------------\n\t\t\t       You chose ZesMoo.\n\t\t\t----------------------------------\n");
@@ -71,7 +71,7 @@ main()
 			printf("\n\t\t\t----------------------------------");
 			printf("\n\t\t\t       Change Breakdown:");
 			printf("\n\t\t\t----------------------------------");
-			printf("\n\t\t\t%d pc\(s) 500PHP \n\t\t\t%d pc\(s) 100PHP \n\t\t\t%d pc\(s) 50PHP \n\t\t\t%d pc\(s) 10PHP \n\t\t\t%d pc\(s) 5PHP \n\t\t\t%d pc\(s) 1PHP",e,f,g,h,i,j); //onelineyolo
+			printf("\n\t\t\t%d pc(s) 500PHP \n\t\t\t%d pc(s) 100PHP \n\t\t\t%d pc(s) 50PHP \n\t\t\t%d pc(s) 10PHP \n\t\t\t%d pc(s) 5PHP \n\t\t\t%d pc(s) 1PHP",e,f,g,h,i,j); //onelineyolo
 			break;
 		case 3:
 			printf("\t\t\t----------------------------------\n\t\t\t   You chose KAPE NA HINDI PURO.\n\t\t\t----------------------------------\n");
@@ -89,7 +89,7 @@ main()
 			printf("\n\t\t\t----------------------------------");
 			printf("\n\t\t\t       Change Breakdown:");
 			printf("\n\t\t\t----------------------------------");
-			printf("\n\t\t\t%d pc\(s) 500PHP \n\t\t\t%d pc\(s) 100PHP \n\t\t\t%d pc\(s) 50PHP \n\t\t\t%d pc\(s) 10PHP \n\t\t\t%d pc\(s) 5PHP \n\t\t\t%d pc\(s) 1PHP",e,f,g,h,i,j); //onelineyolo
+			printf("\n\t\t\t%d pc(s) 500PHP \n\t\t\t%d pc(s) 100PHP \n\t\t\t%d pc(s) 50PHP \n\t\t\t%d pc(s) 10PHP \n\t\t\t%d pc(s) 5PHP \n\t\t\t%d pc(s) 1PHP",e,f,g,h,i,j); //onelineyolo
 			break;
 		default:
 			printf("i dont know how you got here but i think you might have memhack'd the variable \'a\' to get here since i have a while loop errorchecking thing up there.");
