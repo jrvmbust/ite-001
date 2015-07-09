@@ -5,6 +5,7 @@
 /*Vendo Machine Assignment #2 for ITE-001*/
 /*Coded by John Rovic Vargas IT11KA3*/
 //shoutout dyan kina mike at aaron na tumingin dito sa code ko
+// ung mga while loop kahit hindi na ilagay un. basta proper selections lang ung ilagay.
 
 const int jpprice = 13; 
 const int scprice = 35;
