@@ -8,12 +8,13 @@
 const int jpprice = 13; 
 const int scprice = 35;
 const int cfprice = 17;
-int b, c,d,e,f,g,h,i,j;
+int b, c,d,e,f,g,h,i,j, changee;
 char ab[5];
 
 main()
 {
 	b = 0;
+	changee = 0;
 	printf("\n\t\t\t     #BestVendingMachine2015\n");
 	printf("\t\t\t----------------------------------\n");
 	printf("\t\t\t       What are you buying?\n");
@@ -43,8 +44,19 @@ main()
 	{
 		case 1:
 			printf("\t\t\t----------------------------------\n\t\t\t     You chose NUKE-A-COLA.\n\t\t\t----------------------------------\n");
-			printf("\t\t\t      TOTAL COST: %d PHP", scprice);
-			printf("\n\t\t\t    CHANGE FOR HOW MUCH?: "); scanf("%d", &c);
+			printf("\t\t\t      TOTAL COST: %d PHP\n.", scprice);
+			while (changee < 1)
+			{
+				printf("\t\t\t    CHANGE FOR HOW MUCH?: "); scanf("%d", &c);
+				if (c < scprice)
+				{
+					printf("\t\t\t----------------------------------\n\t\t\tNot enough money. Please try again.\n\t\t\t----------------------------------\n");
+				}
+				else
+				{
+					changee++;
+				}
+			}
 			d = c - scprice;
 			e = d / 500;
 			f = ((d % 500)/100);
@@ -61,8 +73,19 @@ main()
 			break;
 		case 2:
 			printf("\t\t\t----------------------------------\n\t\t\t       You chose ZesMoo.\n\t\t\t----------------------------------\n");
-			printf("\t\t\t      TOTAL COST: %d PHP", jpprice);
-			printf("\n\t\t\t    CHANGE FOR HOW MUCH?: "); scanf("%d", &c);
+			printf("\t\t\t      TOTAL COST: %d PHP\n", jpprice);
+			while (changee < 1)
+			{
+				printf("\t\t\t    CHANGE FOR HOW MUCH?: "); scanf("%d", &c);
+				if (c < jpprice)
+				{
+					printf("\t\t\t----------------------------------\n\t\t\tNot enough money. Please try again.\n\t\t\t----------------------------------\n");
+				}
+				else
+				{
+					changee++;
+				}
+			}
 			d = c - jpprice;
 			e = d / 500;
 			f = ((d % 500)/100);
@@ -79,8 +102,19 @@ main()
 			break;
 		case 3:
 			printf("\t\t\t----------------------------------\n\t\t\t   You chose KAPE NA HINDI PURO.\n\t\t\t----------------------------------\n");
-			printf("\t\t\t       TOTAL COST: %d PHP", cfprice);
-			printf("\n\t\t\t     CHANGE FOR HOW MUCH?: "); scanf("%d", &c);
+			printf("\t\t\t       TOTAL COST: %d PHP\n", cfprice);
+			while (changee < 1)
+			{
+				printf("\t\t\t    CHANGE FOR HOW MUCH?: "); scanf("%d", &c);
+				if (c < cfprice)
+				{
+					printf("\t\t\t----------------------------------\n\t\t\tNot enough money. Please try again.\n\t\t\t----------------------------------\n");
+				}
+				else
+				{
+					changee++;
+				}
+			}
 			d = c - cfprice;
 			e = d / 500;
 			f = ((d % 500)/100);
