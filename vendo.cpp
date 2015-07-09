@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <conio.h>
+#include <stdlib.h> // atoi
 
 const int jpprice = 13; 
 const int scprice = 35;
 const int cfprice = 17;
-int a, b, c,d,e,f,g,h,i,j;
+int b, c,d,e,f,g,h,i,j;
+char ab[5];
 
 main()
 {
@@ -20,13 +22,12 @@ main()
 	
 	while (b < 1 ) //CHECKS IF THE SELECTION IS INVALID THEN RETURNS TO MAKE A SELECTION SORRY MAM KUNG DI ITO KASAMA LOL
 	{
-		printf("\t\t\t      Make a selection: "); scanf("%d", &a);
-
-			if (a > 3)
+		printf("\t\t\t      Make a selection: "); scanf("%s", &ab);
+			if (atoi(ab) > 3)
 			{
 				printf("\t\t\t----------------------------------\n\t\t\t    I n v a l i d Selection.\n\t\t\t----------------------------------\n");
 			}
-			else if (a < 1)
+			else if (atoi(ab) < 1)
 			{
 				printf("\t\t\t----------------------------------\n\t\t\t    I n v a l i d Selection.\n\t\t\t----------------------------------\n");
 			}
@@ -35,7 +36,7 @@ main()
 				b++;
 			}
 	}
-	switch(a)
+	switch(atoi(ab)) //atoi = alpha to integer (if u type 1 to a variable which data type is a string, it converts the data type of the variable in memory (not permanently) to integer but the value stays the same.
 	{
 		case 1:
 			printf("\t\t\t----------------------------------\n\t\t\t     You chose NUKE-A-COLA.\n\t\t\t----------------------------------\n");
