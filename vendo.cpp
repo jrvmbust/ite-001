@@ -26,7 +26,7 @@ main()
 	
 	while (b < 1 ) //CHECKS IF THE SELECTION IS INVALID THEN RETURNS TO MAKE A SELECTION SORRY MAM KUNG DI ITO KASAMA LOL
 	{
-		printf("\t\t\t      Make a selection: "); scanf("%s", &ab);
+		printf("\t\t\t      Make a selection: "); scanf("%s", &ab); //fgets(ab, sizeof(ab), stdin); this is way better
 			if (atoi(ab) > 3)
 			{
 				printf("\t\t\t----------------------------------\n\t\t\t    I n v a l i d Selection.\n\t\t\t----------------------------------\n");
