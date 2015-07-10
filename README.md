@@ -1,9 +1,1 @@
-# ite-001
-for all ur coding needs
-
-
-SHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-
-WAG NYONG I-LEAK TO SA IBANG SECTION
-PLEASE LANG
-BAKA MALAMAN NI MAM HAHAAHAHAHAA
+some codes that i usually share privately.
