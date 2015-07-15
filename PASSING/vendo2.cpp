@@ -5,11 +5,6 @@
 /*Coded by John Rovic Vargas IT11KA3*/
 /*VERSION 2 (FOR ASSIGNMENT PASSING)*/
 
-//shoutout dyan kina mike at aaron na tumingin dito sa code ko
-//UPDATE - bawal daw while loops. s a d b o i s
-//i wrote this code before someone asked kung pwede daw.
-//my github has the version that checks if u inputted an alphabet character (atoi) and also checks if the number specified is higher or lower than 1-3 (and goes back to the selection thing. [while loops])
-//https://github.com/jrvmbust/ite-001/blob/master/vendo.cpp
 
 const int jpprice = 13; 
 const int scprice = 35;
