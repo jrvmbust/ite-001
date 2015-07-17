@@ -134,7 +134,7 @@ main()
 			printf("\n\t\t\t%d pc(s) 500PHP \n\t\t\t%d pc(s) 100PHP \n\t\t\t%d pc(s) 50PHP \n\t\t\t%d pc(s) 10PHP \n\t\t\t%d pc(s) 5PHP \n\t\t\t%d pc(s) 1PHP",e,f,g,h,i,j); //onelineyolo
 			break;
 		default:
-			printf("\t\t\t----------------------------------\n\t\t\t    I n v a l i d Selection.\n\t\t\t----------------------------------\n");
+			printf("\t\t\ti dont know how u got here\n");
 			break;
 	}
 	printf("\n\t\t\t----------------------------------\n");
