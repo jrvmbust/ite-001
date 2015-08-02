@@ -14,7 +14,7 @@ main()
 		{
 			b++;
 		}
-		else
+		else if (isalpha(sentence[a]))
 		{
 			c++;
 		}
