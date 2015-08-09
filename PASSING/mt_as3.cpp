@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <conio.h>
-#include <ctype.h>
 
 int a,b,c;
 char sentence[] = "1st, solve the problem. 2nd, write the code";
