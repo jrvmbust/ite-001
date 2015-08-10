@@ -3,9 +3,11 @@
 
 int a,b,c,e;
 
+//cascacascacascacascacascacascascascascascascac
+
 main()
 {
-	printf("input height: "); scanf("%d", &a);
+	printf("input length: "); scanf("%d", &a);
 	printf("input width: "); scanf("%d", &b);
 	printf("\n");
 	for(c =0;c<a;c++)
