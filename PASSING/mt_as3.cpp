@@ -19,4 +19,5 @@ main()
 		}
 	}
 	printf("\n\nDigits: %d\nLetters: %d",b,c);
+	getch();
 }
