@@ -3,8 +3,6 @@
 
 int a,b,c,e;
 
-//cascacascacascacascacascacascascascascascascac
-
 main()
 {
 	printf("input length: "); scanf("%d", &a);
