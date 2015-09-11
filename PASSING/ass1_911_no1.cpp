@@ -22,5 +22,5 @@ main ()
   }
 }
   printf ("Congratulations!");
-
+getch();
 }
