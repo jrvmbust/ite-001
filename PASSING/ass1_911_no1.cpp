@@ -1,20 +1,25 @@
-//rvargas
-
 #include <stdio.h>      
 #include <stdlib.h>     
 #include <time.h>
+int game();
+int main();
+char again;
 int a,b;
-main ()
+
+
+
+int game()
 {
 	
-  //init rand seed
+  //init rand seed 
   srand(time(NULL));
   //actual rand num
-  b = rand() % 100 + 1;
-	puts("\tGUESS THE NUMBER\n      --------------------");
+  b = rand() % 100;
+  
+	printf("---------------------------------\n\tGUESS THE NUMBER\n---------------------------------\n");
     while (b!=a){
 
-    printf ("Guess the number (1 to 100): ");
+    printf ("Guess the number (0 to 100): ");
     scanf ("%d",&a);
     if (b<a) {
 	printf ("--------------------------\nThe secret number is lower\n---------------------------\n");
@@ -24,5 +29,21 @@ main ()
   }
 }
   printf ("\n------------------------------\n\tCongratulations!\n------------------------------");
-getch();
+  printf("\n\nPlay Again? (Y/N): ");scanf("%s",&again);
+  if (again=='Y'||again=='y')
+  {
+  	return main();
+  }
+  else if(again=='n'||again=='Y')
+  {
+  	return 0;
+  }
+
+}
+
+
+int main()
+{
+	game();
+	return 0;
 }
