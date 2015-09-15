@@ -34,7 +34,7 @@ int game()
   {
   	return main();
   }
-  else if(again=='n'||again=='Y')
+  else if(again=='n'||again=='N')
   {
   	return 0;
   }
