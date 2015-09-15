@@ -1,3 +1,5 @@
+//rvargas
+
 #include <stdio.h>      
 #include <stdlib.h>     
 #include <time.h>
@@ -21,6 +23,6 @@ main ()
 	printf ("--------------------------\nThe secret number is higher\n--------------------------\n");
   }
 }
-  printf ("Congratulations!");
+  printf ("\n------------------------------\n\tCongratulations!\n------------------------------");
 getch();
 }
