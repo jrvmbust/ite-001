@@ -1,21 +1,5 @@
 /*CARLS SUPERDUPERMARKET v1 POS SYSTEM LEGGO*/
 
-
-/*
-
-
-
-
-DI PA TAPOS TO KINGINA MO.
-TATANGGALIN KO TO KAPAG TAPOS NA.
-PINOST KO LANG TO PARA MAKITA NYO
-
-
-
-
-*/
-/*CARLS SUPERDUPERMARKET v1 POS SYSTEM LEGGO*/
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <conio.h>
@@ -28,11 +12,6 @@ PINOST KO LANG TO PARA MAKITA NYO
 //started 12:20 AM SEPT 21 2015 lets see when this'll be finished. \m/
 
 
-//buglist
-//WAIT FOR THE ANIMATIONS TO FINISH PLS.
-//FIXED ^ 9/23/2015
-//SALES NALANG 
-
 void menuInventory();
 void credits();
 void addInventory();
@@ -42,12 +21,14 @@ void editInventory();
 void menu();
 void exitR();
 void greeting();
+void removedata();
 void returN();
 void additem(),voiditem(),checkout();
 void printBorders(int x,int y);
 void windowSize(int a, int b);
 int main();
-
+float atemp;
+int btemp;
 
 FILE *fi1,*fdel,*fsal,*fsaldel;
 
@@ -273,7 +254,7 @@ void addInventory()
 	
 	inv1.itemID=b;	
 	//save
-	fi1=fopen("mainInv","ab+");
+	fi1=fopen("mainInv.data","ab+");
 	fseek(fi1,0,SEEK_END);
 	fwrite(&inv1,sizeof(inv1),1,fi1);
 	fclose(fi1);
@@ -380,6 +361,8 @@ void credits()
 
 void menu()
 {	
+	fclose(fsaldel);	
+	fclose(fsal);
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE)); 
 	windowSize(96,32);
 	int b=10;
@@ -389,8 +372,8 @@ void menu()
 	printBorders(95,31);
 	printBox(26,7,40,15);
 	gtc(34,10);printf(" 1. Do Sales");
-	gtc(34,12);printf(" 2. View Sales Report");
-	gtc(34,14);printf(" 3. Manage Inventory");
+	gtc(34,12);printf(" 2. Manage Inventory");
+	gtc(34,14);printf(" 3. Delete all data");
 	gtc(34,16);printf(" 4. Credits");
 	gtc(34,18);printf(" 5. Exit Program");
 	gtc(32,10); printf("\xb10");
@@ -443,10 +426,10 @@ void menu()
 			sales();
 			break;
 		case 12:
-			//viewsales();
+			menuInventory();
 			break;
 		case 14:
-			menuInventory();
+			removedata();
 			break;
 		case 16:
 			credits();
@@ -455,6 +438,18 @@ void menu()
 			exitR();
 			break;
 	}
+}
+
+void removedata()
+{
+	fclose(fi1);
+	fclose(fsal);
+	fclose(fsaldel);
+	remove("tempsales.data");
+	remove("saltemp.data");
+	remove("mainInv.data");
+	menu();
+	exit(0);
 }
 
 
@@ -470,7 +465,7 @@ void menuInventory()
 	printline(95,4);
 	gtc(30,2); printf("INVENTORY MANAGEMENT SYSTEM FOR POS");
 	gtc(5,6); printf ("ID                       ITEM NAME                                     PRICE");
-	fi1=fopen("mainInv","rb");
+	fi1=fopen("mainInv.data","rb");
 	int start=8;
 	int twopage=0;
 	while(fread(&inv1,sizeof(inv1),1,fi1)==1)
@@ -628,7 +623,7 @@ void editInventory()
 		gtc(28,7);
 		printf("Enter Item ID to be edited: ");
 		scanf("%d",&id);
-		fi1=fopen("mainInv","rb+");
+		fi1=fopen("mainInv.data","rb+");
 
 		while(fread(&inv1,sizeof(inv1),1,fi1)==1)
 		{
@@ -675,7 +670,7 @@ void delInventory()
 		gtc(25,7);
 		printf("Enter Item ID to be deleted: ");
 		scanf("%d",&id);
-		fi1=fopen("mainInv","rb+");
+		fi1=fopen("mainInv.data","rb+");
 		rewind(fi1);
 		while(fread(&inv1,sizeof(inv1),1,fi1)==1)
 		{
@@ -712,9 +707,9 @@ void delInventory()
 				}
 				fclose(fdel);	
 				fclose(fi1);
-				remove("mainInv");
-				rename("temp","mainInv"); 
-				fi1=fopen("mainInv","rb+");    
+				remove("mainInv.data");
+				rename("temp","mainInv.data"); 
+				fi1=fopen("mainInv.data","rb+");    
 				if(found==1)
 				{		
 					gtc(25,18);
@@ -740,7 +735,7 @@ void delInventory()
 void printsales()
 {
 	fclose(fsal);
-	fsal=fopen("tempsales","rb+");
+	fsal=fopen("tempsales.data","rb+");	
 	gtc(5,5);printf("sID     NAME          PRICE");
 	int start=7;
 	while(fread(&sal1,sizeof(sal1),1,fsal)==1)
@@ -748,10 +743,11 @@ void printsales()
 		gtc(5,start);printf("%d",sal1.id);
 		gtc(13,start);printf("%dx %s",sal1.quan,sal1.name);
 		gtc(27,start);printf("%.2f",sal1.price);
+		gtc(46,24);printf("Total Quantity: %d",sal1.totalquan);
+		gtc(46,26);printf("Total Price: PHP %.2f",sal1.total);
 		start++;
 	}
-	gtc(46,24);printf("Total Quantity: %d",sal1.totalquan);
-	gtc(46,26);printf("Total Price: PHP %.2f",sal1.total);
+	atemp=0;btemp=0;
 	fclose(fsal);
 }
 
@@ -759,11 +755,12 @@ void sales()
 {	
 	system("cls");
 	fclose(fsal);
+	fclose(fsaldel);	
 	fclose(fi1);
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE)); 
 	printBorders(95,31);
 	system("color 8f");
-	gtc(40,2); printf("S  A  L  E  S");
+	gtc(40,2); printf("S  A  L  E  S"); 			
 	printBox(3,4,35,25);
 	printsales();
 	printBox(42,11,50,8);
@@ -818,7 +815,7 @@ void sales()
 			break;
 		case 71:
 			gtc(53,14);printf("                                  ");
-		//	checkout();
+			checkout();
 			break;
 		case 84:
 			menu();
@@ -832,12 +829,15 @@ void sales()
 
 void additem()
 {
+	fclose(fsal);
+	int b;
+	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 	sal1.id=0;
 	sal1.price=0;
 	sal1.quan=0;
 	int id;
 	gtc(45,13);printf("Input Item ID: ");scanf("%d",&id);
-	fi1=fopen("mainInv","rb+");
+	fi1=fopen("mainInv.data","rb+");
 	while(fread(&inv1,sizeof(inv1),1,fi1)==1)
 	{
 	if (cID(id)==0)
@@ -848,11 +848,13 @@ void additem()
 		{
 			sal1.name[a]=inv1.pName[a];
 		}
-		sal1.id=inv1.itemID+1;
+		srand(time(NULL));
+		b=rand()%100+1;
+		sal1.id=inv1.itemID+b;
 		sal1.totalquan+=sal1.quan;	
 		sal1.price=inv1.price*sal1.quan;
 		sal1.total+=sal1.price;
-		fsal=fopen("tempsales","ab+");
+		fsal=fopen("tempsales.data","ab+");
 		fseek(fsal,0,SEEK_END);
 		fwrite(&sal1,sizeof(sal1),1,fsal);
 		fclose(fsal);
@@ -865,7 +867,12 @@ void additem()
 		getch();
 		sales();exit(0);
 	}
-}
+	}
+	gtc(45,15);printf("Add an item to the inventory first.");
+			
+fclose(fsal);
+fclose(fi1);
+sales();
 }
 
 void voiditem()
@@ -874,7 +881,7 @@ void voiditem()
 	while(loopZ==1)
 	{
 	gtc(45,13);printf("Input Item sID: ");scanf("%d",&id);
-	fsal=fopen("tempsales","rb+"); rewind(fsal);
+	fsal=fopen("tempsales.data","rb+"); rewind(fsal);
 	while(fread(&sal1,sizeof(sal1),1,fsal)==1)
 	{
 		if(cIDs(id)==0)
@@ -883,7 +890,7 @@ void voiditem()
 		}
 		if(f!=1)
 		{
-			gtc(45,5);printf("No item was found with the sID.");		getch();
+			gtc(45,15);printf("No item was found with the sID.");		getch();
 			sales(); exit(0);	
 		}
 		if(f==1)
@@ -891,7 +898,9 @@ void voiditem()
 			gtc(45,14);printf("Are you sure you want to delete %s",sal1.name);gtc(45,15);printf("from the invoice? (Y/N): ");
 			if (getch()=='y')
 			{
-				fsaldel=fopen("saltemp","wb+");
+				fsaldel=fopen("saltemp.data","wb+");
+				atemp=sal1.price;
+				btemp=sal1.quan;
 				rewind(fsal);
 				while(fread(&sal1,sizeof(sal1),1,fsal)==1)
 				{	
@@ -903,15 +912,12 @@ void voiditem()
 				}
 				fclose(fsaldel);	
 				fclose(fsal);
-				remove("tempsales"); 
-				rename("saltemp","tempsales");
-				fsal=fopen("tempsales","rb+");    
+				remove("tempsales.data"); 
+				rename("saltemp.data","tempsales.data");
+				fsal=fopen("tempsales.data","rb+");    
 				if(f==1)
 				{		
-					gtc(45,16);
-					printf("The item was sucessfully deleted");
-					getch();
-					sales(); exit(0);
+					sales();fclose(fsal); exit(0);
 
 				}
 			}
@@ -919,22 +925,55 @@ void voiditem()
 		else
 		fflush(stdin);
 		getch();
-		fclose(fsaldel);	
-		fclose(fsal);
+
 	}
 }
+fclose(fsaldel);	
+fclose(fsal);
+}
+
+void checkout()
+{
+	fclose(fsal);
+	fsal=fopen("tempsales.data","rb+");
+	float change=0,aa=0;
+	if (sal1.total==0)
+	{
+		gtc(45,14);printf("You have no items in the invoice. Returning."); Sleep(1000);
+		sales();
+	}
+	else
+	{
+	
+	while(aa<sal1.total)
+	{
+		gtc(45,14);printf("                 ");
+	gtc(45,14); printf("Change for: ");scanf("%f",&aa);		
+	if (aa<sal1.total)
+	{
+		gtc(45,14); printf("Not enough money.");getch();
+		continue;
+	}
+	}
+	change=aa-sal1.total;
+	gtc(45,15);printf("Change: PHP %.2f",change); getch();
+	fclose(fsaldel);	
+	fclose(fsal);
+	remove("tempsales.data");
+	returN();
+	menu();
+	fclose(fsaldel);	
+	fclose(fsal);
 }
 	
 
-
+}
 
 
 int main()
 {
 	windowSize(96,32);
-	//delInventory();
-	sales();
-	//greeting();
-	//menu();
+	greeting();
+	menu();
 	return 0;
 }
