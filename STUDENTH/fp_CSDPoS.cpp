@@ -935,7 +935,7 @@ fclose(fsal);
 void checkout()
 {
 	fclose(fsal);
-	fsal=fopen("tempsales.data","rb+");
+	fsal=fopen("tempsales.data","ab+");
 	float change=0,aa=0;
 	if (sal1.total==0)
 	{
@@ -957,6 +957,8 @@ void checkout()
 	}
 	change=aa-sal1.total;
 	gtc(45,15);printf("Change: PHP %.2f",change); getch();
+	sal1.totalquan=0;sal1.total=0;
+	fwrite(&sal1,sizeof(sal1),1,fsal);
 	fclose(fsaldel);	
 	fclose(fsal);
 	remove("tempsales.data");
