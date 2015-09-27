@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
+#include <string.h>
 
 //restructured
 
@@ -14,12 +15,13 @@ struct reserve
 {
 	float tp, vs, vat, change, m;
 	int  d, g, f;
-	char a[50], b[50], c[50], e[50], date[30], time[20], edate[30];	
+	char a[50], b[50], c[50], e[50], date[30], time[20], edate[30],tictype[5];
 }; struct reserve r[40];
 
 void oor()
 {
 	r[rnumber].m=0;
+	strcpy(r[rnumber].tictype,"OOR");
 	printf("%d",rnumber);
 	printf("\n\t\t\t    ONE OK ROCK LIVE IN MANILA");
     printf("\n\n\t\t==================================================\n\t\t\t\t||\t\t||\n");
@@ -228,16 +230,19 @@ void rlist()
 {
 /*sa reservation list eto ung ilagay mo: reservation no., start date, end date, name, concert, ticket type, tickets bought*/	
 system("cls");
-	for (int i =1;i<=40;i++)
+	printf("R#   DATE            NAME             CONCERT     SEAT TYPE          T. BOUGHT");
+	/*	for (int i =1;i<=40;i++)
 	{
-		
+			
 			printf("%.2f\n",r[i-1].tp);
 
-	}
+	}*/
 }
 
-/*void ssmith()
+void ssmith()
 {
+		r[rnumber].m=0;
+		strcpy(r[rnumber].tictype,"SSmth");
 	           printf("\n\t\tSam Smith in the Lonely Hour Tour Live in Manila");
                printf("\n\n\t\t==================================================\n\t\t\t\t||\t\t||\n");
                printf("\t\tTYPE OF TICKET\t||     PRICE    || AVAILABLE SEATS\n");
@@ -253,23 +258,23 @@ system("cls");
                scanf("%d", &c3);
                if(c2==1)
                {
-                        tp=c3*6830;
-                        printf("\n\t\tThe total price is Php %.2f", tp);
+                        r[rnumber].tp=c3*6830;
+                        printf("\n\t\tThe total price is Php %.2f", r[rnumber].tp);
                }
                else if(c2==2)
                {
-                    tp=c3*4730;
-                    printf("\n\t\tThe total price is Php %.2f", tp);
+                    r[rnumber].tp=c3*4730;
+                    printf("\n\t\tThe total price is Php %.2f", r[rnumber].tp);
                }
                else if(c2==3)
                {
-                    tp=c3*2100;
-                    printf("\n\t\tThe total price is Php %.2f", tp);
+                    r[rnumber].tp=c3*2100;
+                    printf("\n\t\tThe total price is Php %.2f", r[rnumber].tp);
                }
                else if(c2==4)
                {
-                    tp=c3*1050;
-                    printf("\n\t\tThe total price is Php %.2f", tp);
+                    r[rnumber].tp=c3*1050;
+                    printf("\n\t\tThe total price is Php %.2f", r[rnumber].tp);
                }
                else
                {
@@ -285,15 +290,15 @@ system("cls");
                          printf("\n\t\tChoose mode of payment:");
                          printf("\n\n\t\t\t1. Cash");printf("\n\t\t\t2. Credit Card");
                          printf("\n\n\t\tEnter your choice:");
-                         scanf("%d", &c5);}
+                         scanf("%d", &c5);
                          printf("\n\n\t\t==================================================");
                          if(c5==1)
                          {
-                                  while (m<tp)
+                                  while (r[rnumber].m<r[rnumber].tp)
                                   {
                                           printf("\n\n\t\tEnter your amount of money: Php ");
-                                          scanf("%f", &m);
-                                          if(m<tp){
+                                          scanf("%f", &r[rnumber].m);
+                                          if(r[rnumber].m<r[rnumber].tp){
                                                    printf("\n\t\tNot enough money");
                                                    }
                                   }
@@ -320,15 +325,15 @@ system("cls");
                                        printf("Invalid");
                                   }
                                   printf("\n\t\tNumber of tickets bought: %d", c3);
-                                  vs=tp*.88;
-                                  printf("\n\t\tVAT Sales: \t\t  Php %.2f", vs);
-                                  vat=tp*.12;
-                                  printf("\n\t\t12%% VAT: \t\t  Php %.2f", vat);
+                                  r[rnumber].vs=r[rnumber].tp*.88;
+                                  printf("\n\t\tVAT Sales: \t\t  Php %.2f", r[rnumber].vs);
+                                  r[rnumber].vat=r[rnumber].tp*.12;
+                                  printf("\n\t\t12%% VAT: \t\t  Php %.2f", r[rnumber].vat);
                                   printf("\n\n\t\t==================================================");
-                                  printf("\n\n\t\tAmount Due: \t\t  Php %.2f", tp);
-                                  printf("\n\n\t\tCash: \t\t\t  Php %.2f", m);
-                                  change=m-tp;
-                                  printf("\n\n\t\tChange: \t\t  Php %.2f", change);
+                                  printf("\n\n\t\tAmount Due: \t\t  Php %.2f", r[rnumber].tp);
+                                  printf("\n\n\t\tCash: \t\t\t  Php %.2f", r[rnumber].m);
+                                  r[rnumber].change=r[rnumber].m-r[rnumber].tp;
+                                  printf("\n\n\t\tChange: \t\t  Php %.2f", r[rnumber].change);
                                   printf("\n\n\t\t==================================================");
                                   printf("\n\n\t\tIs this okay?\n\t\t1. Yes\t\t2. No\n\t\t");
                                   scanf("%d", &c6);
@@ -337,13 +342,13 @@ system("cls");
                                   {
                                               printf("\n\n\t\tPlease fill in these fields regarding your profile\n\t\tto complete your reservation:");
                                               printf("\n\n\t\t==================================================");
-                                              printf("\n\n\t\tFirst Name:"); scanf("%s", &a);
-                                              printf("\n\t\tMiddle Initial:"); scanf("%s", &b);
-                                              printf("\n\t\tLast Name:"); scanf("%s", &c);
-                                              printf("\n\t\tContact Number:"); scanf("%d", &d);
-                                              printf("\n\t\tAddress:"); scanf("%s", &e);
-                                              printf("\n\t\tDate(MM/DD/YY):"); scanf("%s", &date);
-                                              printf("\n\t\tTime(HH:MM AM/PM):"); scanf("%s", &time);
+                                              printf("\n\n\t\tFirst Name:"); scanf("%s", &r[rnumber].a);
+                                              printf("\n\t\tMiddle Initial:"); scanf("%s", &r[rnumber].b);
+                                              printf("\n\t\tLast Name:"); scanf("%s", &r[rnumber].c);
+                                              printf("\n\t\tContact Number:"); scanf("%d", &r[rnumber].d);
+                                              printf("\n\t\tAddress:"); scanf("%s", &r[rnumber].e);
+                                              printf("\n\t\tDate(MM/DD/YY):"); scanf("%s", &r[rnumber].date);
+                                              printf("\n\t\tTime(HH:MM AM/PM):"); scanf("%s", &r[rnumber].time);
                                     }//c6==1
                                     else if(c6==2)
                                     {
@@ -352,6 +357,11 @@ system("cls");
                           system("cls");
                           printf("\n\n\t\tSuccessfully Reserved.");
                           printf("\n\n\t\tIMPORTANT NOTE:\n\n\t\tIf payment is not done within 72 hours (3 days)\n\t\tyour reservation will be cancelled.");
+
+                          printf("\n\n\t\tPress any key to continue.");
+                           rnumber++;
+		                 getch();
+                           main();
                           }//c5==1
                           else if(c5==2)
                           {
@@ -359,9 +369,9 @@ system("cls");
                                printf("\n\n\t\t==================================================");
                                printf("\n\t\t1.Visa    2.Master card    3.Paypal");
                                printf("\n\n\t\tChoose the type of Credit Card:");
-                               scanf("%d", &f);
-                               printf("\n\t\tCredit Card number:"); scanf("%s", &g);
-                               printf("\n\t\tExpiry Date(MM/DD/YY):"); scanf("%s", &edate);
+                               scanf("%d", &r[rnumber].f);
+                               printf("\n\t\tCredit Card number:"); scanf("%s", &r[rnumber].g);
+                               printf("\n\t\tExpiry Date(MM/DD/YY):"); scanf("%s", &r[rnumber].edate);
                                system("cls");
                                printf("\n\n\t\tBreakdown of Payment:");
                                     if(c2==1)
@@ -385,12 +395,12 @@ system("cls");
                                          printf("Invalid");
                                     }
                                     printf("\n\t\tNumber of tickets bought: %d", c3);
-                                    vs=tp*.88;
-                                    printf("\n\t\tVAT Sales: \t\t  Php %.2f", vs);
-                                    vat=tp*.12;
-                                    printf("\n\t\t12%% VAT: \t\t  Php %.2f", vat);
+                                    r[rnumber].vs=r[rnumber].tp*.88;
+                                    printf("\n\t\tVAT Sales: \t\t  Php %.2f", r[rnumber].vs);
+                                    r[rnumber].vat=r[rnumber].tp*.12;
+                                    printf("\n\t\t12%% VAT: \t\t  Php %.2f", r[rnumber].vat);
                                     printf("\n\n\t\t==================================================");
-                                    printf("\n\n\t\tAmount Due: \t\t  Php %.2f", tp);
+                                    printf("\n\n\t\tAmount Due: \t\t  Php %.2f", r[rnumber].tp);
                                     printf("\n\n\t\t==================================================");
                                     printf("\n\n\t\tIs this okay?\n\t\t1. Yes\t\t2. No\n\t\t");
                                     scanf("%d", &c6);
@@ -399,38 +409,51 @@ system("cls");
                                     {
                                              printf("\n\t\tCard Holder's Profile:");
                                              printf("\n\n\t\t==================================================");
-                                             printf("\n\n\t\tFirst Name:"); scanf("%s", &a);
-                                             printf("\n\t\tMiddle Initial:"); scanf("%s", &b);
-                                             printf("\n\t\tLast Name:"); scanf("%s", &c);
-                                             printf("\n\t\tContact Number:"); scanf("%d", &d);
-                                             printf("\n\t\tAddress:"); scanf("%s", &e);
-                                             printf("\n\t\tDate(MM/DD/YY):"); scanf("%s", &date);
-                                             printf("\n\t\tTime(HH:MM AM/PM):"); scanf("%s", &time);
+                                             printf("\n\n\t\tFirst Name:"); scanf("%s", &r[rnumber].a);
+                                             printf("\n\t\tMiddle Initial:"); scanf("%s", &r[rnumber].b);
+                                             printf("\n\t\tLast Name:"); scanf("%s", &r[rnumber].c);
+                                             printf("\n\t\tContact Number:"); scanf("%d", &r[rnumber].d);
+                                             printf("\n\t\tAddress:"); scanf("%s", &r[rnumber].e);
+                                             printf("\n\t\tDate(MM/DD/YY):"); scanf("%s", &r[rnumber].date);
+                                             printf("\n\t\tTime(HH:MM AM/PM):"); scanf("%s", &r[rnumber].time);
                                              system("cls");
                                              printf("\n\n\t\tSuccessfully Reserved.");
+                                             printf("\n\n\t\tPress any key to continue.");
+                                             rnumber++;
+                                             main();
                                     }//c6==1//
                                     if(c6==2)
                                     {
-                                             printf("\n\t\tReturn to menu?");
+                                             printf("\n\t\tReturn to menu?(Y/N): ");
+											if (getch()=='y')
+											main();
+											else
+											ssmith();
                                     }//c6==2//
                                }//c5==2//
                           }//c4==1
                 else if(c4==2)
                 {
-                     printf("\n\t\tProceed to menu?");
-                }//c4==2//c1==2//
+                     printf("\n\t\tProceed to menu?(Y/N): ");
+                											if (getch()=='y')
+											main();
+											else
+											ssmith();
+				}//c4==2//c1==2//
       getch();
-}*/
+}
 
 
 
 main()
 {
+	system("cls"); 
 	  printf("%.2f",r[rnumber-1].tp);
 	  printf("\t\t==========RPG's Ticket Distribution Inc.==========\n\n");
       printf("\t\t\tUPCOMING CONCERTS IN THE PHILIPPINES:\n"); 
       printf("\n\n\t\t1. ONE OK ROCK Live in Manila\n\t\t(January 19, 2016 at Mall of Asia Arena)");
       printf("\n\n\t\t2. Sam Smith in the Lonely Hour Tour Live in Manila\n\t\t(November 12, 2015 at Mall of Asia Arena)");
+      printf("\n\n\t\t3. View list of tickets bought/reserved");
       printf("\n\n\t\t==================================================");
       printf("\n\n\t\tEnter your choice: ");
       scanf("%d", &c1);
@@ -441,7 +464,7 @@ main()
 	}
       else if(c1==2)
       {
-              // ssmith();
+              ssmith();
            }
        else if(c1==3)
        {
@@ -450,5 +473,6 @@ main()
       getch();
 
 }
+
 
 
